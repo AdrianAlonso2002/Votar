@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Político de Afinidad Electoral | España</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🗳️</text></svg>">
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- CABECERA PRINCIPAL -->
+    <header class="header">
+      <div class="brand-badge">
+        <span>🇪🇸</span> Brújula Electoral España
+      </div>
+      <h1>¿A qué partido político votar?</h1>
+      <p>Descubre tu grado de afinidad ideológica con las principales fuerzas políticas de España y comprende cómo piensas en general a través de 15 preguntas desglosadas y pedagógicas.</p>
+    </header>
+
+    <!-- ======================================================================
+         1. PANTALLA DE BIENVENIDA (WELCOME SCREEN)
+         ====================================================================== -->
+    <section id="welcome-screen" class="welcome-card">
+      <h2>Conoce tu voto y tu posición política real</h2>
+      <p class="lead">
+        Responde a las cuestiones reales de la sociedad española con todas sus aristas explicadas: 
+        <strong>aborto, eutanasia, violencia de género vs. intrafamiliar, inmigración, okupación, precio del alquiler, acceso a vivienda, ayudas y subsidios, sanidad pública vs. conciertos, colegios (religión y sexología), medio ambiente, ciencia, deporte y tus prioridades de país</strong>.
+      </p>
+
+      <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 18px; text-align: left; margin: 20px 0;">
+        <h3 style="font-size: 1rem; color: #93c5fd; margin-bottom: 8px;">ℹ️ Cómo funciona este test:</h3>
+        <ul style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; padding-left: 20px;">
+          <li>Cada pregunta incluye un <strong>contexto legal y explicativo</strong> para que comprendas el fondo del debate sin dar nada por sabido.</li>
+          <li>Cuentas con <strong>5 opciones de respuesta graduadas</strong>. Al pulsar cada una, <strong>aparecerá inmediatamente debajo un texto</strong> que detalla qué implicaciones prácticas y morales tiene tu postura.</li>
+          <li>Separamos cada asunto: okupación es una cosa, alquiler es otra y acceso a la vivienda es otra; aborto, eutanasia, ayudas sociales, etc.</li>
+          <li>En la última pregunta podrás <strong>elegir y ordenar a qué temas das mayor prioridad</strong> para ponderar tus resultados.</li>
+          <li>Al finalizar, obtendrás tus <strong>porcentajes con Vox, PP, PSOE, Sumar, Podemos y SALF</strong>, tu brújula política 2D y una <strong>explicación detallada de cómo eres en general</strong>.</li>
+        </ul>
+      </div>
+
+      <div style="margin: 22px 0 10px;">
+        <span style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-subtle); font-weight: 700;">
+          Partidos analizados en el test
+        </span>
+        <div class="parties-preview-grid">
+          <div class="party-badge-pill" style="background: rgba(90, 192, 53, 0.15); color: #5ac035; border-color: #5ac035;">VOX</div>
+          <div class="party-badge-pill" style="background: rgba(29, 132, 206, 0.15); color: #1d84ce; border-color: #1d84ce;">PP</div>
+          <div class="party-badge-pill" style="background: rgba(227, 6, 19, 0.15); color: #f87171; border-color: #e30613;">PSOE</div>
+          <div class="party-badge-pill" style="background: rgba(229, 27, 94, 0.15); color: #f472b6; border-color: #e51b5e;">Sumar</div>
+          <div class="party-badge-pill" style="background: rgba(123, 50, 148, 0.2); color: #c084fc; border-color: #7b3294;">Podemos</div>
+          <div class="party-badge-pill" style="background: rgba(234, 179, 8, 0.15); color: #facc15; border-color: #eab308;">SALF</div>
+        </div>
+      </div>
+
+      <button id="btn-start" class="btn-start">
+        Empezar cuestionario ➔
+      </button>
+    </section>
+
+    <!-- ======================================================================
+         2. PANTALLA DEL CUESTIONARIO (QUIZ SCREEN)
+         ====================================================================== -->
+    <section id="quiz-screen" class="quiz-container">
+      
+      <!-- Progreso -->
+      <div class="progress-header">
+        <div class="progress-info">
+          <span id="progress-category" class="progress-category">Derechos y Bioética</span>
+          <span id="progress-count" class="progress-count">Pregunta 1 de 10</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div id="progress-bar-fill" class="progress-bar-fill"></div>
+        </div>
+      </div>
+
+      <!-- Tarjeta de Pregunta -->
+      <div class="question-card">
+        <div id="question-topic" class="question-topic">Aborto y Derechos Reproductivos</div>
+        <h2 id="question-statement" class="question-statement">
+          El aborto debe ser un derecho libre, público y garantizado sin restricciones para cualquier mujer.
+        </h2>
+
+        <!-- Contexto pedagógico explicativo -->
+        <div id="question-context" class="question-context-box"></div>
+
+        <!-- Las 5 Opciones -->
+        <div id="options-grid" class="options-grid">
+          <!-- Se cargan dinámicamente desde JavaScript -->
+        </div>
+
+        <!-- Caja de Explicación Dinámica (Aparece abajo al pulsar una opción) -->
+        <div id="explanation-container" class="explanation-container">
+          <div class="explanation-box">
+            <div class="explanation-header">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>Lo que significa tu postura:</span>
+            </div>
+            <p id="explanation-text" class="explanation-content">
+              <!-- Texto dinámico que indica qué implica la opción elegida -->
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Barra de Navegación -->
+      <div class="navigation-bar">
+        <button id="btn-prev" class="btn-secondary" disabled>
+          ⬅ Anterior
+        </button>
+        <button id="btn-confirm" class="btn-primary" disabled>
+          Confirmar y siguiente ➔
+        </button>
+      </div>
+
+    </section>
+
+    <!-- ======================================================================
+         3. PANTALLA DE RESULTADOS (RESULTS SCREEN)
+         ====================================================================== -->
+    <section id="results-screen" class="results-container">
+      
+      <!-- Partido Ganador Destacado -->
+      <div id="winner-hero-card" class="winner-hero-card">
+        <div class="winner-badge">⭐ Tu Máxima Afinidad Política</div>
+        <h2 id="winner-party-name" class="winner-party-name">VOX</h2>
+        <div id="winner-leader" class="winner-leader">Líder: Santiago Abascal</div>
+        
+        <div class="winner-percentage-display">
+          <span id="winner-percent">88</span><span class="winner-percentage-sign">%</span>
+        </div>
+        
+        <div id="winner-tagline" class="winner-tagline">
+          Derecha identitaria, provida y nacional-conservadora
+        </div>
+        <p id="winner-desc" class="winner-desc">
+          Tus respuestas reflejan una sintonía destacada con sus propuestas programáticas y su visión ideológica general.
+        </p>
+      </div>
+
+      <!-- Ranking Comparativo de los 6 Partidos -->
+      <div class="parties-ranking-card">
+        <h3 class="section-title">
+          <span>📊</span> Afinidad Electoral con Todos los Partidos
+        </h3>
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">
+          Porcentaje de coincidencia de tus opiniones frente al programa electoral y las posiciones oficiales de cada formación política:
+        </p>
+
+        <div id="ranking-list" class="ranking-list">
+          <!-- Filas de partidos renderizadas dinámicamente -->
+        </div>
+      </div>
+
+      <!-- Brújula Política 2D (Political Compass) -->
+      <div class="compass-card">
+        <h3 class="section-title">
+          <span>🧭</span> Tu Posición en la Brújula Política
+        </h3>
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 12px;">
+          Este gráfico sitúa tus respuestas en el espectro político español junto a los 6 partidos analizados.
+        </p>
+
+        <div id="compass-wrapper" class="compass-wrapper">
+          <!-- Cuadrantes -->
+          <div class="compass-quadrant q-top-left">Izquierda Tradicional / Centralista</div>
+          <div class="compass-quadrant q-top-right">Conservadurismo / Orden / Identidad</div>
+          <div class="compass-quadrant q-bottom-left">Progresismo Social / Plurinacional</div>
+          <div class="compass-quadrant q-bottom-right">Liberalismo Económico / Pro-Mercado</div>
+
+          <!-- Ejes Centrales -->
+          <div class="compass-center-line-x"></div>
+          <div class="compass-center-line-y"></div>
+
+          <!-- Etiquetas de los extremos de los ejes -->
+          <div class="compass-axis-label label-top">Conservador / Centralista</div>
+          <div class="compass-axis-label label-bottom">Progresista / Laico / Federal</div>
+          <div class="compass-axis-label label-left">Intervención Pública</div>
+          <div class="compass-axis-label label-right">Libre Mercado</div>
+
+          <!-- Puntos de partidos y usuario inyectados por JS -->
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 14px; font-size: 0.8rem; color: var(--text-muted);">
+          <span style="display: inline-flex; align-items: center; gap: 5px;">
+            <span style="width: 12px; height: 12px; border-radius: 50%; background: #3b82f6; border: 2px solid white; display: inline-block;"></span> 
+            <strong>Tú</strong>
+          </span>
+          <span style="display: inline-flex; align-items: center; gap: 5px;"><span style="color:#5ac035;">●</span> Vox</span>
+          <span style="display: inline-flex; align-items: center; gap: 5px;"><span style="color:#1d84ce;">●</span> PP</span>
+          <span style="display: inline-flex; align-items: center; gap: 5px;"><span style="color:#e30613;">●</span> PSOE</span>
+          <span style="display: inline-flex; align-items: center; gap: 5px;"><span style="color:#e51b5e;">●</span> Sumar</span>
+          <span style="display: inline-flex; align-items: center; gap: 5px;"><span style="color:#7b3294;">●</span> Podemos</span>
+          <span style="display: inline-flex; align-items: center; gap: 5px;"><span style="color:#eab308;">●</span> SALF</span>
+        </div>
+      </div>
+
+      <!-- Perfil General del Usuario (Explicación de cómo eres) -->
+      <div class="profile-card">
+        <span id="profile-title-badge" class="profile-title-badge">Perfil Ideológico</span>
+        <h3 id="profile-headline" class="profile-headline">Tu perfil es: Patriota de Orden y Regeneración</h3>
+        
+        <div id="profile-narrative-text" class="profile-narrative-text">
+          <!-- Texto detallado generado automáticamente -->
+        </div>
+
+        <div id="profile-pillars-grid" class="profile-pillars-grid">
+          <!-- Pilares temáticos (Economía, Modelo de Estado, Seguridad, Valores) -->
+        </div>
+      </div>
+
+      <!-- Revisión Detallada de Respuestas -->
+      <div class="review-card">
+        <h3 class="section-title">
+          <span>📝</span> Resumen de tus Respuestas y lo que Significan
+        </h3>
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 16px;">
+          Repasa las 10 preguntas respondidas y el significado contextual que indicaste en cada una:
+        </p>
+        <div id="review-list">
+          <!-- Renderizado dinámico de las 10 preguntas -->
+        </div>
+      </div>
+
+      <!-- Acciones Finales -->
+      <div class="results-actions">
+        <button id="btn-restart" class="btn-restart">
+          🔄 Repetir el test
+        </button>
+        <button id="btn-copy" class="btn-copy">
+          📋 Compartir resultado
+        </button>
+      </div>
+
+    </section>
+
+  </div>
+
+  <!-- Toast flotante de notificación -->
+  <div id="toast" class="toast">Mensaje copiado</div>
+
+  <!-- Scripts -->
+  <script src="questions.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
